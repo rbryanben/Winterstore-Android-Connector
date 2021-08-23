@@ -212,6 +212,36 @@ public class Connection {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(imageView);
     }
+    
+    
+    // Load Image: Given an object to display the image, assigns the given
+    // imageID as the image received from the server, and caches it
+    public void loadImageAndCache(ImageView imageView, String imageID){
+        // Custom Headers for Glide Request
+        GlideUrl url = new GlideUrl(compileDownloadURL(imageID), new LazyHeaders.Builder()
+                .addHeader("Authorization", "Token " + TOKEN)
+                .build());
+
+        // Load the image
+        Glide.with(activity)
+                .load(url)
+                .into(imageView);
+    }
+
+    // Load Image: Given an object to display the image, assigns the given
+    // imageID as the image received from the server, and caches it
+    public void loadImageAndCache(ImageView imageView, String imageID, int placeHolderImage){
+        // Custom Headers for Glide Request
+        GlideUrl url = new GlideUrl(compileDownloadURL(imageID), new LazyHeaders.Builder()
+                .addHeader("Authorization", "Token " + TOKEN)
+                .build());
+
+        // Load the image
+        Glide.with(activity)
+                .load(url)
+                .into(imageView);
+    }
+
 
     // Create Folder: Creates a folder in the client's project given
     // the parentID and the FolderName
